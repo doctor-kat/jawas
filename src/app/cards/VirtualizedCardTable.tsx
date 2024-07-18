@@ -1,5 +1,6 @@
 import VirtualizedTable from "@/app/cards/VirtualizedTable";
 import Increment from "@/app/collection/Increment";
+import VariantCollection from "@/app/collection/VariantCollection";
 import Holographic from "@/app/shared/images/Holographic";
 import HolographicCardImage from "@/app/shared/images/HolographicCardImage";
 import { Type } from "@/types/swu-official/attributes/Type";
@@ -16,7 +17,6 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import VariantCount from "../collection/VariantCount";
 
 function isNotVariant(card: SWUCard) {
     return !card.attributes.variantOf.data && !card.attributes.hasFoil;
@@ -149,12 +149,14 @@ const VirtualizedCardTable: React.FC<Props> = ({
                                     {["Standard"].includes(variantType) &&
                                         card.attributes.hasFoil && (
                                             <Holographic
-                                                blendMode="color"
+                                                blendMode="darken"
                                                 enabled={
                                                     card.attributes.hasFoil
                                                 }
                                             >
-                                                <CreditCard />
+                                                <CreditCard
+                                                    sx={{ fill: "white" }}
+                                                />
                                             </Holographic>
                                         )}
                                     <Typography
@@ -170,25 +172,7 @@ const VirtualizedCardTable: React.FC<Props> = ({
                     </TableCell>
                     <TableCell>
                         {hideVariants ? (
-                            [
-                                card.attributes.variantTypes.data.map(
-                                    (w) => w.attributes.name,
-                                ),
-                                card.attributes.variants.data?.flatMap((v) =>
-                                    v.attributes.variantTypes.data.map(
-                                        (w) => w.attributes.name,
-                                    ),
-                                ),
-                            ]
-                                .filter((v) => !!v)
-                                .flatMap((v) => v)
-                                .map((variantType) => (
-                                    <VariantCount
-                                        key={`${card.id}_${variantType}`}
-                                        id={card.id}
-                                        variantType={variantType}
-                                    />
-                                ))
+                            <VariantCollection card={card} />
                         ) : (
                             <Increment id={card.id} />
                         )}
