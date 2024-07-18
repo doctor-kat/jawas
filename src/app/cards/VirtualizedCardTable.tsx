@@ -76,7 +76,7 @@ const VirtualizedCardTable: React.FC<Props> = ({
                 .filter((card) => (hideVariants ? isNotVariant(card) : true))
                 .filter(
                     (card) =>
-                        search &&
+                        !search ||
                         card.attributes.title
                             .toLowerCase()
                             .includes(search.toLowerCase()),
@@ -170,8 +170,6 @@ const VirtualizedCardTable: React.FC<Props> = ({
                     </TableCell>
                     <TableCell>
                         {hideVariants ? (
-                            <Increment id={card.id} />
-                        ) : (
                             [
                                 card.attributes.variantTypes.data.map(
                                     (w) => w.attributes.name,
@@ -191,6 +189,8 @@ const VirtualizedCardTable: React.FC<Props> = ({
                                         variantType={variantType}
                                     />
                                 ))
+                        ) : (
+                            <Increment id={card.id} />
                         )}
                     </TableCell>
                 </React.Fragment>
