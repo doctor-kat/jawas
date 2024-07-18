@@ -1,7 +1,8 @@
 "use client";
 
-import { db } from "@/app/shared/db";
 import Holographic from "@/app/shared/images/Holographic";
+import { getParentId } from "@/app/shared/variants/getAttribute";
+import { getVariants } from "@/app/shared/variants/getVariants";
 import { SWUCard } from "@/types/swu-official/SWUCard";
 import { CreditCard } from "@mui/icons-material";
 import {
@@ -22,52 +23,19 @@ type Props = {
 };
 
 const Variants: React.FC<Props> = ({ card }) => {
-    const variantOfId = card.attributes.variantOf.data?.id;
-    const [variantOf, setVariantOf] = useState<SWUCard | null | undefined>(
-        null,
-    );
+    const parentId = getParentId({ card });
     const [variants, setVariants] = useState<SWUCard[]>([]);
 
     useEffect(() => {
         (async () => {
-            let parent: SWUCard | undefined;
-            if (variantOfId) {
-                parent = await db.cards.get(String(variantOfId));
-                setVariantOf(parent);
-            } else {
-                setVariantOf(null);
-            }
-
-            const variants = [parent, card]
-                .flatMap((card) => card?.attributes.variants?.data)
-                .filter((v) => !!v);
-            const foils = (
-                await Promise.all(
-                    variants.map(
-                        async (variant) => await db.cards.get(`${variant.id}F`),
-                    ),
-                )
-            ).filter((v) => !!v);
-            setVariants([...variants, ...foils]);
+            setVariants(await getVariants({ card }));
         })();
-    }, [variantOfId]);
+    }, []);
 
     return (
         <Box component={Paper} elevation={12}>
             <List>
                 <ListSubheader>Variants</ListSubheader>
-                <Link
-                    href={{
-                        pathname: "/card",
-                        query: { id: variantOfId ?? card.id },
-                    }}
-                >
-                    <ListItemButton
-                        selected={!variantOf && !card.attributes.hasFoil}
-                    >
-                        Regular
-                    </ListItemButton>
-                </Link>
                 {variants.map((variant) => (
                     <Link
                         key={variant.id}
