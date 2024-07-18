@@ -1,4 +1,4 @@
-import { getCardsPage } from "@/app/upstream/swu-official/cards";
+import { getCardsPage } from "@/app/shared/upstream/swu-official/cards";
 import * as fs from "node:fs";
 
 export async function GET() {

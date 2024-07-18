@@ -1,7 +1,7 @@
 import VirtualizedTable from "@/app/cards/VirtualizedTable";
 import Increment from "@/app/collection/Increment";
-import Holographic from "@/app/images/Holographic";
-import HolographicCardImage from "@/app/images/HolographicCardImage";
+import Holographic from "@/app/shared/images/Holographic";
+import HolographicCardImage from "@/app/shared/images/HolographicCardImage";
 import { Type } from "@/types/swu-official/attributes/Type";
 import { SWUCard } from "@/types/swu-official/SWUCard";
 import { CreditCard } from "@mui/icons-material";

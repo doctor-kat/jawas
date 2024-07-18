@@ -1,6 +1,7 @@
 "use client";
 
-import { Jawa } from "@/app/icons";
+import { Jawa } from "@/app/shared/icons";
+import theme from "@/app/shared/theme";
 import Sidebar from "@/app/Sidebar";
 import { MenuOpen } from "@mui/icons-material";
 import {
@@ -16,7 +17,6 @@ import {
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v13-appRouter";
 import "./globals.css";
 import React, { useState } from "react";
-import theme from "./theme";
 
 export default function RootLayout({
     children,

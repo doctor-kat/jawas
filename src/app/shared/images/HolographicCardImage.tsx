@@ -1,4 +1,4 @@
-import Holographic from "@/app/images/Holographic";
+import Holographic from "@/app/shared/images/Holographic";
 import { SWUCard } from "@/types/swu-official/SWUCard";
 import Image from "next/image";
 import React, { useState } from "react";

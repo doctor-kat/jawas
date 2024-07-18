@@ -3,8 +3,8 @@
 import AspectIcons from "@/app/card/AspectIcons";
 import { replaceKeywords } from "@/app/card/textStyledProcessor";
 import Variants from "@/app/card/Variants";
-import { db } from "@/app/db";
-import Holographic from "@/app/images/Holographic";
+import { db } from "@/app/shared/db";
+import Holographic from "@/app/shared/images/Holographic";
 import { CardArtData } from "@/types/swu-official/Art";
 import { BasicAttributes } from "@/types/swu-official/attributes/Attributes";
 import { CardAttributes, SWUCard } from "@/types/swu-official/SWUCard";

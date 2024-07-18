@@ -1,6 +1,6 @@
 "use client";
 
-import { db } from "@/app/db";
+import { db } from "@/app/shared/db";
 import { Button, FormGroup, TextField } from "@mui/material";
 import React, { useEffect, useState } from "react";
 

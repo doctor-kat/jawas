@@ -1,7 +1,7 @@
 "use client";
 
-import { db } from "@/app/db";
-import Holographic from "@/app/images/Holographic";
+import { db } from "@/app/shared/db";
+import Holographic from "@/app/shared/images/Holographic";
 import { CreditCard } from "@mui/icons-material";
 import { Button, ButtonGroup } from "@mui/material";
 import Image from "next/image";

@@ -1,6 +1,6 @@
 "use client";
 
-import { db, VERSION_4_HASH } from "@/app/db";
+import { db, VERSION_4_HASH } from "@/app/shared/db/index";
 import { Rarity } from "@/types/swu-official/attributes/Rarity";
 import { Type } from "@/types/swu-official/attributes/Type";
 import { SWUCard } from "@/types/swu-official/SWUCard";

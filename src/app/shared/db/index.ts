@@ -1,4 +1,4 @@
-import { getAllCardsFromAssets, populate } from "@/app/db/populate";
+import { getAllCardsFromAssets, populate } from "@/app/shared/db/populate";
 import { SWUCard } from "@/types/swu-official/SWUCard";
 import Dexie, { type EntityTable } from "dexie";
 
