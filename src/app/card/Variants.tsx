@@ -82,12 +82,14 @@ const Variants: React.FC<Props> = ({ card }) => {
                                         )
                                         .map(() => (
                                             <Holographic
-                                                blendMode="color"
+                                                blendMode="darken"
                                                 enabled={
                                                     variant.attributes.hasFoil
                                                 }
                                             >
-                                                <CreditCard />
+                                                <CreditCard
+                                                    sx={{ fill: "white" }}
+                                                />
                                             </Holographic>
                                         ))}
                                 <Typography

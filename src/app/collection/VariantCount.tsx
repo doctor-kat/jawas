@@ -10,9 +10,10 @@ import React, { useEffect, useState } from "react";
 type Props = {
     id: number | string;
     variantType: string;
+    hasFoil?: boolean;
 };
 
-const VariantCount: React.FC<Props> = ({ id, variantType }) => {
+const VariantCount: React.FC<Props> = ({ id, variantType, hasFoil }) => {
     const [count, setCount] = useState<number | null>(null);
 
     useEffect(() => {
@@ -27,7 +28,7 @@ const VariantCount: React.FC<Props> = ({ id, variantType }) => {
         case "Hyperspace":
         case "Showcase":
             icon = (
-                <Holographic blendMode="darken" enabled={true}>
+                <Holographic blendMode="darken" enabled={hasFoil}>
                     <Image
                         alt={variantType}
                         src={`/${variantType}.webp`}
@@ -40,8 +41,8 @@ const VariantCount: React.FC<Props> = ({ id, variantType }) => {
 
         case "Standard":
             icon = (
-                <Holographic blendMode="color" enabled={true}>
-                    <CreditCard />
+                <Holographic blendMode="darken" enabled={hasFoil}>
+                    <CreditCard sx={{ fill: "white" }} />
                 </Holographic>
             );
             break;
