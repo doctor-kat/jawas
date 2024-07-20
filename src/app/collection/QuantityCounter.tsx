@@ -43,8 +43,8 @@ const QuantityCounter: React.FC<Props> = ({ id }) => {
                     sx: {
                         textAlign: "center",
                         m: 0,
-                        "-webkit-appearance": "none",
-                        "-moz-appearance": "textfield",
+                        WebkitAppearance: "none",
+                        MozAppearance: "textfield",
                     },
                 }}
             />
