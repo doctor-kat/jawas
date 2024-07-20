@@ -2,6 +2,8 @@ import QuantityCounter from "@/app/collection/QuantityCounter";
 import VariantQuantitySelector from "@/app/collection/VariantQuantitySelector";
 import Holographic from "@/app/shared/images/Holographic";
 import HolographicCardImage from "@/app/shared/images/HolographicCardImage";
+import { isNotVariant } from "@/app/shared/table/filter";
+import { defaultSort } from "@/app/shared/table/sort";
 import VirtualizedTable from "@/app/shared/table/VirtualizedTable";
 import { Type } from "@/types/swu-official/attributes/Type";
 import { SWUCard } from "@/types/swu-official/SWUCard";
@@ -18,70 +20,36 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-function isNotVariant(card: SWUCard) {
-    return !card.attributes.variantOf.data && !card.attributes.hasFoil;
-}
-
-function sortBy(a: SWUCard, b: SWUCard): number {
-    const expansion = [a, b].map(
-        (card) => card.attributes.expansion.data.attributes.name,
-    );
-    const cardNumber = [a, b].map((card) => card.attributes.cardNumber);
-    const type = [a, b].map(
-        (card) => card.attributes.type.data.attributes.name,
-    );
-    const variantTypes = [a, b].map(
-        (card) => card.attributes.variantTypes?.data?.[0]?.attributes.name,
-    );
-    if (expansion[0] === expansion[1]) {
-        if (!isNotVariant(a) && !isNotVariant(b)) {
-            if (variantTypes[0] === variantTypes[1]) {
-                return cardNumber[0] > cardNumber[1] ? 1 : -1;
-            } else {
-                return variantTypes[0] > variantTypes[1] ? 1 : -1;
-            }
-        } else if (!isNotVariant(a) && isNotVariant(b)) {
-            return 1;
-        } else if (isNotVariant(a) && !isNotVariant(b)) {
-            return -1;
-        } else {
-            if (type[0] === Type.TOKEN && type[1] !== Type.TOKEN) {
-                return 1;
-            } else if (type[0] !== Type.TOKEN && type[1] === Type.TOKEN) {
-                return -1;
-            }
-            return cardNumber[0] > cardNumber[1] ? 1 : -1;
-        }
-    } else {
-        return expansion[0] > expansion[1] ? 1 : -1;
-    }
-}
-
 type Props = {
     cards: SWUCard[];
     hideVariants?: boolean;
     search?: string;
+    filter?: (card: SWUCard) => boolean;
+    sort?: (a: SWUCard, b: SWUCard) => number;
 };
+
+export function matchName(search: string): (card: SWUCard) => boolean {
+    return (card) =>
+        !search ||
+        card.attributes.title.toLowerCase().includes(search.toLowerCase());
+}
 
 const VirtualizedCardTable: React.FC<Props> = ({
     cards,
     hideVariants,
-    search,
+    search = "",
+    filter = () => true,
+    sort = defaultSort,
 }) => {
     const theme = useTheme();
 
     return (
         <VirtualizedTable
             data={cards
-                .filter((card) => (hideVariants ? isNotVariant(card) : true))
-                .filter(
-                    (card) =>
-                        !search ||
-                        card.attributes.title
-                            .toLowerCase()
-                            .includes(search.toLowerCase()),
-                )
-                .toSorted(sortBy)}
+                .filter(hideVariants ? isNotVariant : () => true)
+                .filter(filter)
+                .filter(matchName(search))
+                .toSorted(sort)}
             fixedHeaderContent={() => (
                 <TableRow sx={{ background: theme.palette.background.paper }}>
                     <TableCell>Card Number</TableCell>
