@@ -39,7 +39,14 @@ const Increment: React.FC<Props> = ({ id }) => {
                 value={count}
                 sx={{ zIndex: 0, flex: 1 }}
                 InputProps={{ sx: { borderRadius: 0 } }}
-                inputProps={{ sx: { textAlign: "center" } }}
+                inputProps={{
+                    sx: {
+                        textAlign: "center",
+                        m: 0,
+                        "-webkit-appearance": "none",
+                        "-moz-appearance": "textfield",
+                    },
+                }}
             />
             <Button
                 variant="outlined"
