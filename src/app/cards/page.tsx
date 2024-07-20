@@ -1,7 +1,7 @@
 "use client";
 
-import VirtualizedCardTable from "@/app/cards/VirtualizedCardTable";
 import { db, populate } from "@/app/shared/db";
+import VirtualizedCardTable from "@/app/shared/table/VirtualizedCardTable";
 import { SWUCard } from "@/types/swu-official/SWUCard";
 import { Search } from "@mui/icons-material";
 import {

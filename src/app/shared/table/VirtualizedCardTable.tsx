@@ -1,8 +1,8 @@
-import VirtualizedTable from "@/app/cards/VirtualizedTable";
 import QuantityCounter from "@/app/collection/QuantityCounter";
 import VariantQuantitySelector from "@/app/collection/VariantQuantitySelector";
 import Holographic from "@/app/shared/images/Holographic";
 import HolographicCardImage from "@/app/shared/images/HolographicCardImage";
+import VirtualizedTable from "@/app/shared/table/VirtualizedTable";
 import { Type } from "@/types/swu-official/attributes/Type";
 import { SWUCard } from "@/types/swu-official/SWUCard";
 import { CreditCard } from "@mui/icons-material";
