@@ -21,6 +21,7 @@ const VariantQuantitySelector: React.FC<Props> = ({ card }) => {
 
     return variants.map((variant) => (
         <QuantitySelector
+            key={variant.id}
             id={variant.id}
             variantType={getVariantType({ card: variant })}
             hasFoil={variant.attributes.hasFoil}

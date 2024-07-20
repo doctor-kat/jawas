@@ -60,8 +60,8 @@ const VirtualizedCardTable: React.FC<Props> = ({
                 </TableRow>
             )}
             itemContent={(i, card) => (
-                <React.Fragment key={card.id}>
-                    <TableCell>
+                <React.Fragment>
+                    <TableCell key={card.id}>
                         {card.attributes.type.data.attributes.name ===
                         Type.TOKEN
                             ? `T0${card.attributes.cardNumber}`

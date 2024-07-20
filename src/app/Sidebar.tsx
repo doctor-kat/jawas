@@ -58,6 +58,7 @@ const Sidebar: React.FC<NavProps> = ({ open }) => {
                         },
                     ].map(({ href, icon, label }) => (
                         <ListItem
+                            key={label}
                             sx={{
                                 justifyContent: open ? "flex-start" : "center",
                             }}
