@@ -37,7 +37,7 @@ const Increment: React.FC<Props> = ({ id }) => {
                 variant="outlined"
                 placeholder="..."
                 value={count}
-                sx={{ zIndex: 0 }}
+                sx={{ zIndex: 0, flex: 1 }}
                 InputProps={{ sx: { borderRadius: 0 } }}
                 inputProps={{ sx: { textAlign: "center" } }}
             />

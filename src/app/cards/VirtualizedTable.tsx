@@ -50,6 +50,7 @@ export default function VirtualizedTable<T>({
                 components={VirtuosoTableComponents}
                 fixedHeaderContent={fixedHeaderContent}
                 itemContent={itemContent}
+                useWindowScroll
             />
         </Box>
     );

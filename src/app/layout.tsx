@@ -30,7 +30,7 @@ export default function RootLayout({
             <body>
                 <AppRouterCacheProvider>
                     <ThemeProvider theme={theme}>
-                        <Box sx={{ display: "flex", height: "100%" }}>
+                        <Box sx={{ display: "flex" }}>
                             <AppBar
                                 position="fixed"
                                 sx={{
