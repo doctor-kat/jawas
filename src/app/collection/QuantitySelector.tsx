@@ -13,7 +13,7 @@ type Props = {
     hasFoil?: boolean;
 };
 
-const VariantCount: React.FC<Props> = ({ id, variantType, hasFoil }) => {
+const QuantitySelector: React.FC<Props> = ({ id, variantType, hasFoil }) => {
     const [count, setCount] = useState<number | null>(null);
 
     useEffect(() => {
@@ -72,4 +72,4 @@ const VariantCount: React.FC<Props> = ({ id, variantType, hasFoil }) => {
         </ButtonGroup>
     );
 };
-export default VariantCount;
+export default QuantitySelector;

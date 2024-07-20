@@ -1,6 +1,6 @@
 import VirtualizedTable from "@/app/cards/VirtualizedTable";
-import Increment from "@/app/collection/Increment";
-import VariantCollection from "@/app/collection/VariantCollection";
+import QuantityCounter from "@/app/collection/QuantityCounter";
+import VariantQuantitySelector from "@/app/collection/VariantQuantitySelector";
 import Holographic from "@/app/shared/images/Holographic";
 import HolographicCardImage from "@/app/shared/images/HolographicCardImage";
 import { Type } from "@/types/swu-official/attributes/Type";
@@ -172,9 +172,9 @@ const VirtualizedCardTable: React.FC<Props> = ({
                     </TableCell>
                     <TableCell>
                         {hideVariants ? (
-                            <VariantCollection card={card} />
+                            <VariantQuantitySelector card={card} />
                         ) : (
-                            <Increment id={card.id} />
+                            <QuantityCounter id={card.id} />
                         )}
                     </TableCell>
                 </React.Fragment>

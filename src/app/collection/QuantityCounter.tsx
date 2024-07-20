@@ -8,7 +8,7 @@ type Props = {
     id: number | string;
 };
 
-const Increment: React.FC<Props> = ({ id }) => {
+const QuantityCounter: React.FC<Props> = ({ id }) => {
     const [count, setCount] = useState<number | null>(null);
 
     useEffect(() => {
@@ -63,4 +63,4 @@ const Increment: React.FC<Props> = ({ id }) => {
         </FormGroup>
     );
 };
-export default Increment;
+export default QuantityCounter;
