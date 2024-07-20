@@ -40,6 +40,7 @@ const VariantCount: React.FC<Props> = ({ id, variantType, hasFoil }) => {
             break;
 
         case "Standard":
+        default:
             icon = (
                 <Holographic blendMode="darken" enabled={hasFoil}>
                     <CreditCard sx={{ fill: "white" }} />
@@ -54,10 +55,15 @@ const VariantCount: React.FC<Props> = ({ id, variantType, hasFoil }) => {
             {[1, 2, 3].map((value) => (
                 <Button
                     key={`${id}_${count}`}
-                    disabled={value === count}
+                    variant={value === count ? "contained" : "outlined"}
                     onClick={async () => {
-                        setCount(value);
-                        await db.owned.put({ id: String(id), count: value });
+                        if (value !== count) {
+                            setCount(value);
+                            await db.owned.put({
+                                id: String(id),
+                                count: value,
+                            });
+                        }
                     }}
                 >
                     {value}
