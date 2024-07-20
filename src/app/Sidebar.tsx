@@ -1,4 +1,4 @@
-import { Inventory2, Layers, Style } from "@mui/icons-material";
+import { Archive, Layers, Style } from "@mui/icons-material";
 import {
     Box,
     Drawer,
@@ -7,7 +7,9 @@ import {
     ListItemButton,
     ListItemIcon,
     ListItemText,
+    Stack,
     Toolbar,
+    Typography,
 } from "@mui/material";
 import Link from "next/link";
 import React from "react";
@@ -38,54 +40,55 @@ const Sidebar: React.FC<NavProps> = ({ open }) => {
             <Toolbar />
             <Box sx={{ overflow: open ? "auto" : "hidden" }}>
                 <List>
-                    <ListItem>
-                        <Link href="/cards">
-                            <ListItemButton>
-                                {open ? (
-                                    <>
-                                        <ListItemIcon>
-                                            <Style />
-                                        </ListItemIcon>
-                                        <ListItemText primary="Cards" />
-                                    </>
-                                ) : (
-                                    <Style />
-                                )}
-                            </ListItemButton>
-                        </Link>
-                    </ListItem>
-                    <ListItem>
-                        <Link href="/collection">
-                            <ListItemButton>
-                                {open ? (
-                                    <>
-                                        <ListItemIcon>
-                                            <Inventory2 />
-                                        </ListItemIcon>
-                                        <ListItemText primary="Collection" />
-                                    </>
-                                ) : (
-                                    <Inventory2 />
-                                )}
-                            </ListItemButton>
-                        </Link>
-                    </ListItem>
-                    <ListItem>
-                        <Link href="/decks">
-                            <ListItemButton>
-                                {open ? (
-                                    <>
-                                        <ListItemIcon>
-                                            <Layers />
-                                        </ListItemIcon>
-                                        <ListItemText primary="Decks" />
-                                    </>
-                                ) : (
-                                    <Layers />
-                                )}
-                            </ListItemButton>
-                        </Link>
-                    </ListItem>
+                    {[
+                        {
+                            href: "/cards",
+                            icon: <Style sx={{ transform: "scaleY(-1)" }} />,
+                            label: "Cards",
+                        },
+                        {
+                            href: "/collection",
+                            icon: <Archive />,
+                            label: "Collection",
+                        },
+                        {
+                            href: "/decks",
+                            icon: <Layers />,
+                            label: "Decks",
+                        },
+                    ].map(({ href, icon, label }) => (
+                        <ListItem
+                            sx={{
+                                justifyContent: open ? "flex-start" : "center",
+                            }}
+                        >
+                            <Link href={href} style={{ flex: 1 }}>
+                                <ListItemButton>
+                                    {open ? (
+                                        <>
+                                            <ListItemIcon>
+                                                {React.cloneElement(
+                                                    icon,
+                                                    icon.props,
+                                                )}
+                                            </ListItemIcon>
+                                            <ListItemText primary={label} />
+                                        </>
+                                    ) : (
+                                        <Stack alignItems="center">
+                                            {React.cloneElement(icon, {
+                                                ...icon.props,
+                                                fontSize: "large",
+                                            })}
+                                            <Typography variant="body2">
+                                                {label}
+                                            </Typography>
+                                        </Stack>
+                                    )}
+                                </ListItemButton>
+                            </Link>
+                        </ListItem>
+                    ))}
                 </List>
             </Box>
         </Drawer>
