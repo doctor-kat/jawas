@@ -6,11 +6,10 @@ import { Type } from "@/types/swu-official/attributes/Type";
 import { SWUCard } from "@/types/swu-official/SWUCard";
 import { Search } from "@mui/icons-material";
 import {
-    Checkbox,
-    FormControl,
     FormControlLabel,
-    Grid,
+    FormGroup,
     Stack,
+    Switch,
     TextField,
     useTheme,
 } from "@mui/material";
@@ -73,36 +72,30 @@ export default function Owned() {
     }, []);
 
     return (
-        <Stack gap={2}>
-            <Stack className="cards" gap={1}>
-                <Grid container gap={1}>
-                    <FormControl>
-                        <TextField
-                            value={searchRaw}
-                            onChange={(e) => {
-                                setSearchRaw(e.target.value);
-                            }}
-                            InputProps={{ startAdornment: <Search /> }}
+        <Stack className="cards" gap={1}>
+            <FormGroup row>
+                <TextField
+                    value={searchRaw}
+                    onChange={(e) => {
+                        setSearchRaw(e.target.value);
+                    }}
+                    InputProps={{ startAdornment: <Search /> }}
+                />
+                <FormControlLabel
+                    control={
+                        <Switch
+                            checked={hideVariants}
+                            onClick={(e) => setHideVariants(!hideVariants)}
                         />
-                        <FormControlLabel
-                            control={
-                                <Checkbox
-                                    checked={hideVariants}
-                                    onClick={(e) =>
-                                        setHideVariants(!hideVariants)
-                                    }
-                                />
-                            }
-                            label="Hide Variants"
-                        />
-                    </FormControl>
-                    <VirtualizedCardTable
-                        cards={cards}
-                        hideVariants={hideVariants}
-                        search={search}
-                    />
-                </Grid>
-            </Stack>
+                    }
+                    label="Hide Variants"
+                />
+            </FormGroup>
+            <VirtualizedCardTable
+                cards={cards}
+                hideVariants={hideVariants}
+                search={search}
+            />
         </Stack>
     );
 }
