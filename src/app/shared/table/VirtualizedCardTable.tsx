@@ -138,11 +138,11 @@ const VirtualizedCardTable: React.FC<Props> = ({
                                 </Stack>
                             ))}
                     </TableCell>
-                    <TableCell>
+                    <TableCell className="w-0">
                         {hideVariants ? (
                             <VariantQuantitySelector card={card} />
                         ) : (
-                            <QuantityCounter id={card.id} />
+                            <QuantityCounter card={card} />
                         )}
                     </TableCell>
                 </React.Fragment>

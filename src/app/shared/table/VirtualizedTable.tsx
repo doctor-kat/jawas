@@ -22,7 +22,7 @@ const VirtuosoTableComponents: TableComponents<any> = {
     Table: (props) => (
         <Table
             {...props}
-            sx={{ borderCollapse: "separate", tableLayout: "fixed" }}
+            sx={{ borderCollapse: "separate", tableLayout: "auto" }}
         />
     ),
     TableHead: React.forwardRef<HTMLTableSectionElement>((props, ref) => (
@@ -46,6 +46,7 @@ export default function VirtualizedTable<T>({
     return (
         <Box sx={{ flexGrow: 1, width: "100%" }}>
             <TableVirtuoso
+                overscan={500}
                 data={data}
                 components={VirtuosoTableComponents}
                 fixedHeaderContent={fixedHeaderContent}
